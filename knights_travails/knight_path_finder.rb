@@ -1,5 +1,6 @@
 require_relative '../treenode/lib/00_tree_node.rb'
 require "byebug"
+
 class KnightPathFinder
 
   attr_reader :root
@@ -35,35 +36,43 @@ class KnightPathFinder
   end
 
   def build_move_tree
-    moves_seen = []
     queue = []
     queue.push(@root)
     until queue.empty?
-      #debugger
       current_node = queue.shift
       positions = new_move_positions(current_node.value)
       positions.each do |pos|
-        unless moves_seen.include?(pos)
+        unless @visited_positions.include?(pos)
           new_node = PolyTreeNode.new(pos)
           new_node.parent = current_node
           queue << new_node
         end
       end
-      moves_seen += positions
+      @visited_positions += positions
     end
   end
 
   def display(node)
-    puts "#{node.value} : #{node.children.map(&:value)}"
-    node.children.each {|n| display(n) }
+    puts "#{node.value} : #{node.children}"
+    node.children.each { |n| display(n) }
   end
 
-  def find_path
+  def find_path(end_pos)
+    end_node = @root.bfs(end_pos)
+    trace_path_back(end_node)
+  end
 
+  def trace_path_back(end_node)
+    return [end_node.value] if end_node.parent.nil?
+
+    trace_path_back(end_node.parent) << end_node.value
   end
 
 end
 
-kpf = KnightPathFinder.new
-kpf.build_move_tree
-kpf.display(kpf.root)
+if __FILE__ == $PROGRAM_NAME
+  kpf = KnightPathFinder.new
+  kpf.build_move_tree
+  kpf.display(kpf.root)
+  p kpf.find_path([0, 1])
+end

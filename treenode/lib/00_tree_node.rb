@@ -31,8 +31,12 @@ class PolyTreeNode
     end
   end
 
+  def inspect
+    value
+  end
+
   def to_s
-    "v: #{@value} : p: #{@parent} : children: #{@children}"
+    value
   end
 
   def has_child?(parent)
