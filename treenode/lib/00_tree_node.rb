@@ -31,6 +31,10 @@ class PolyTreeNode
     end
   end
 
+  def to_s
+    "v: #{@value} : p: #{@parent} : children: #{@children}"
+  end
+
   def has_child?(parent)
     parent.children.include?(self)
   end
