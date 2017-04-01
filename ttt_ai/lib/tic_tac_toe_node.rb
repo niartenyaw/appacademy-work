@@ -1,3 +1,4 @@
+require 'byebug'
 require_relative 'tic_tac_toe'
 
 class TicTacToeNode
@@ -11,16 +12,24 @@ class TicTacToeNode
   end
 
   def losing_node?(evaluator)
+    return true if @board.over? && @board.winner != evaluator
+    return false if @board.over?
+    
+    children.each do |child|
+      return true if losing_node?(child)
+    end
 
+    false
   end
 
   def winning_node?(evaluator)
+    evaluator == @board.winner ? true : false
   end
 
   # This method generates an array of all moves that can be made after
   # the current move.
   def children
-    nodes = []
+    children = []
     @board.rows.each_index do |row_i|
       @board.rows[row_i].each_index do |col_i|
         if @board.rows[row_i][col_i].nil?
@@ -28,11 +37,11 @@ class TicTacToeNode
           new_rows[row_i][col_i] = @next_mover_mark
           new_board = Board.new(new_rows)
           new_marker = @next_mover_mark == :x ? :o : :x
-          nodes << TicTacToeNode.new(new_board, new_marker, [row_i, col_i])
+          children << TicTacToeNode.new(new_board, new_marker, [row_i, col_i])
         end
       end
     end
-    nodes
+    children
   end
 
   def deep_dup(b)

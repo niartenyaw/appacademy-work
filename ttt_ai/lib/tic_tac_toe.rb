@@ -79,6 +79,13 @@ class Board
   def won?
     !winner.nil?
   end
+
+  def inspect
+    @rows.each do |row|
+      p row
+    end
+    puts
+  end
 end
 
 # Notice how the Board has the basic rules of the game, but no logic
