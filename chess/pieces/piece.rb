@@ -1,9 +1,14 @@
+require_relative "../board.rb"
+
 class Piece
-  def initialize
+  def initialize(board, team, position = nil)
+    @board = board
+    @team = team
+    @position = position
   end
 
   def to_s
-    "P"
+    symbol
   end
 
   def empty?
@@ -13,6 +18,12 @@ class Piece
   end
 
   def valid_moves
+    moves
+    # Make sure no moves allow for check or checkmate
+  end
+
+  def to_position(pos)
+    @position = pos
   end
 
   private

@@ -1,5 +1,6 @@
 require 'byebug'
 require_relative 'pieces/piece.rb'
+require_relative 'pieces/king.rb'
 
 class Board
   def initialize
@@ -9,7 +10,7 @@ class Board
   def make_starting_grid
     [0, 1, 6, 7].each do |i|
       (0..7).each do |j|
-        self[[i,j]] = Piece.new
+        self[[i,j]] = King.new(self, "WHITE", [i,j])
       end
     end
   end
@@ -41,7 +42,13 @@ class Board
       raise ArgumentError.new "There is a piece there"
     end
 
+    possible_moves = self[from_pos].valid_moves
+    unless possible_moves.include?(to_pos)
+      raise ArgumentError.new "That is not a valid move"
+    end
+
     self[to_pos] = self[from_pos]
+    self[from_pos].to_position(to_pos)
     self[from_pos] = nil
   end
 
@@ -53,7 +60,6 @@ class Board
   end
 
   def in_bounds?(pos)
-    #debugger
     pos.all? { |coord| coord.between?(0, @grid.length - 1) }
   end
 end

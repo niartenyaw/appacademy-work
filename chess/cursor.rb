@@ -83,11 +83,8 @@ class Cursor
     when :left, :down, :up, :right
       update_pos(MOVES[key])
       nil
-    when :tab
-    when :newline
-    when :escape
-    when :backspace
-    when :delete
+    when :space, :enter
+      @cursor_pos
     when :ctrl_c
       exit
     end
@@ -97,7 +94,6 @@ class Cursor
     temp = []
     temp << @cursor_pos[0] + diff[0]
     temp << @cursor_pos[1] + diff[1]
-    p temp
     @cursor_pos = temp if @board.in_bounds?(temp)
   end
 end
