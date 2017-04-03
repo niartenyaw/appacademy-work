@@ -24,6 +24,10 @@ class Board
     @grid[x][y] = piece
   end
 
+  def length
+    @grid.length
+  end
+
   def dup
 
   end
@@ -46,5 +50,10 @@ class Board
   end
 
   def find_king(color)
+  end
+
+  def in_bounds?(pos)
+    #debugger
+    pos.all? { |coord| coord.between?(0, @grid.length - 1) }
   end
 end

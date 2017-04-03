@@ -3,6 +3,7 @@ class Piece
   end
 
   def to_s
+    "P"
   end
 
   def empty?
