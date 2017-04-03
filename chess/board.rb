@@ -1,6 +1,7 @@
 require 'byebug'
 require_relative 'pieces/piece.rb'
 require_relative 'pieces/king.rb'
+require_relative 'pieces/knight.rb'
 
 class Board
   def initialize
@@ -10,7 +11,7 @@ class Board
   def make_starting_grid
     [0, 1, 6, 7].each do |i|
       (0..7).each do |j|
-        self[[i,j]] = King.new(self, "WHITE", [i,j])
+        self[[i,j]] = Knight.new(self, "WHITE", [i,j])
       end
     end
   end
