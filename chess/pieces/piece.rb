@@ -22,6 +22,10 @@ class Piece
     # Make sure no moves allow for check or checkmate
   end
 
+  def team
+    @team
+  end
+
   def to_position(pos)
     @position = pos
   end
