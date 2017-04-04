@@ -12,7 +12,7 @@ class Board
   def make_starting_grid
     [0, 1, 6, 7].each do |i|
       (0..7).each do |j|
-        self[[i,j]] = Rook.new(self, "WHITE", [i,j])
+        self[[i,j]] = Queen.new(self, "WHITE", [i,j])
       end
     end
   end
