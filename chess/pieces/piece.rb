@@ -18,12 +18,16 @@ class Piece
   end
 
   def valid_moves
-    moves
-    # Make sure no moves allow for check or checkmate
+    available_moves = moves
+
   end
 
   def team
     @team
+  end
+
+  def same_team?(piece)
+    piece.team == @team
   end
 
   def to_position(pos)
@@ -32,6 +36,7 @@ class Piece
 
   private
 
-  def move_into_checks(to_pos)
+  def move_into_check?(end_pos)
+    board_dup = @board.dup
   end
 end

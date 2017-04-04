@@ -8,7 +8,7 @@ class Bishop < Piece
   end
 
   def symbol
-    "R"
+    "B"
   end
 
   def move_dirs

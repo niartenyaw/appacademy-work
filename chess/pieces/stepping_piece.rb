@@ -7,7 +7,7 @@ module SteppingPiece
     end
 
     available_moves.select! { |move| @board.in_bounds?(move) }
-    available_moves.select! { |move| @board[move].nil? || @board[move].team != @team }
+    available_moves.reject { |move| @board.same_team?(move, @position) }
   end
 
 end

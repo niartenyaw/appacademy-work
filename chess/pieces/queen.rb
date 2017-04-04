@@ -8,10 +8,10 @@ class Queen < Piece
   end
 
   def symbol
-    "R"
+    "Q"
   end
 
   def move_dirs
-    [:vert]
+    [:vert, :diag]
   end
 end
