@@ -20,6 +20,18 @@ class Piece
   def valid_moves
     available_moves = moves
 
+    curr_board = @board.dupped ? @board : @board.dup
+    available_moves.each do |move|
+      curr_board.move_piece!(@position, move)
+
+      if new_board.in_check?(@team)
+        available_moves.delete(move)
+      end
+
+      @board.move_piece!(move, @position)
+    end
+    p available_moves
+    available_moves
   end
 
   def team

@@ -10,21 +10,17 @@ require_relative 'pieces/pawn.rb'
 
 class Board
 
-  attr_reader :current_player
+  attr_reader :current_player, :dupped
 
-  def initialize
+  def initialize(dupped = false)
     @grid = Array.new(8) { Array.new(8) }
     @current_player = :cyan
     @player_colors = [:cyan, :magenta]
+    @dupped = dupped
   end
 
   def make_starting_grid
-    (2..5).each do |i|
-      (0..7).each do |j|
-        self[[i, j]] = NullPiece.instance
-      end
-    end
-
+    place_null_pieces
     place_main_pieces(0, :magenta)
     place_main_pieces(7, :cyan)
     place_pawns(1, :magenta)
@@ -40,6 +36,14 @@ class Board
     self[[row, 5]] = Bishop.new(self, color, [row, 5])
     self[[row, 6]] = Knight.new(self, color, [row, 6])
     self[[row, 7]] = Rook.new(self, color, [row, 7])
+  end
+
+  def place_null_pieces
+    (0..7).each do |i|
+      (0..7).each do |j|
+        self[[i, j]] = NullPiece.instance
+      end
+    end
   end
 
   def place_pawns(row, color)
@@ -63,8 +67,33 @@ class Board
   end
 
   def dup
-    new_board = Board.new
-    
+    new_board = Board.new(true)
+    new_board.place_null_pieces
+
+    (0..7).each do |i|
+      (0..7).each do |j|
+        piece = self[[i, j]]
+        p piece.class.to_s
+        case piece.class.to_s
+
+        when "King"
+          new_board[[i, j]] = King.new(new_board, piece.team, [i, j])
+        when "Queen"
+          new_board[[i, j]] = Queen.new(new_board, piece.team, [i, j])
+        when "Bishop"
+          new_board[[i, j]] = Bishop.new(new_board, piece.team, [i, j])
+        when "Knight"
+          new_board[[i, j]] = Knight.new(new_board, piece.team, [i, j])
+        when "Rook"
+          new_board[[i, j]] = Rook.new(new_board, piece.team, [i, j])
+        when "Pawn"
+          new_board[[i, j]] = Pawn.new(new_board, piece.team, [i, j])
+        else
+          next
+        end
+      end
+    end
+    new_board
   end
 
   def switch_players
@@ -86,7 +115,8 @@ class Board
   end
 
   def check_for_valid_move(from_pos, to_pos)
-    possible_moves = self[from_pos].valid_moves
+    new_board = self.dup
+    possible_moves = new_board[from_pos].valid_moves
     unless possible_moves.include?(to_pos)
       raise ArgumentError.new "That is not a valid move"
     end
