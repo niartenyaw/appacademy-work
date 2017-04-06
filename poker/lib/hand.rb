@@ -71,46 +71,46 @@ class Hand
   end
 
   def straight_flush
-    in_straight? && same_suit? ? [CARD_VALUES[:straight_flush], @cards.max(&:value)] : nil
+    in_straight? && same_suit? ? [HAND_VALUES[:straight_flush], @cards.max(&:value).value] : nil
   end
 
   def four_of_a_kind
     four = of_a_kind(4)
-    four ? [CARD_VALUES[:four_of_a_kind], four] : nil
+    four ? [HAND_VALUES[:four_of_a_kind], four] : nil
   end
 
   def full_house
     three = of_a_kind(3)
     two = of_a_kind(2, three)
-    three && two ? [CARD_VALUES[:full_house], [three, two]] : nil
+    three && two ? [HAND_VALUES[:full_house], three] : nil
   end
 
   def flush
-    same_suit? ? [CARD_VALUES[:flush], @cards.max(&:value)] : nil
+    same_suit? ? [HAND_VALUES[:flush], @cards.max(&:value).value] : nil
   end
 
   def straight
-    in_straight? ? [CARD_VALUES[:straight], @cards.max(&:value)] : nil
+    in_straight? ? [HAND_VALUES[:straight], @cards.max(&:value).value] : nil
   end
 
   def three_of_a_kind
     three = of_a_kind(3)
-    three ? [CARD_VALUES[:three_of_a_kind], three] : nil
+    three ? [HAND_VALUES[:three_of_a_kind], three] : nil
   end
 
   def two_pair
     first = of_a_kind(2)
     second = of_a_kind(2, first)
-    second && first ? [CARD_VALUES[:two_pair], [first, second].sort.reverse] : nil
+    second && first ? [HAND_VALUES[:two_pair], [first, second].sort.reverse] : nil
   end
 
   def one_pair
     two = of_a_kind(2)
-    two ? [CARD_VALUES[:one_pair], two] : nil
+    two ? [HAND_VALUES[:one_pair], two] : nil
   end
 
   def high_card
-    [CARD_VALUES[:high_card], @cards.max(&:value)]
+    [HAND_VALUES[:high_card], @cards.max(&:value).value]
   end
 
 end
