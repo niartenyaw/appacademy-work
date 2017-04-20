@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Spaghetti Sauce Recipe</title>
+    <meta name="description" content="The best, most delicious meaty spaghetti sauce cooked with tomatoes, onions, peppers, and spices.">
+    <meta charset="utf-8">
+
+    <script type="text/javascript" src="js_example.js"/>
+    <link rel="stylesheet" href="style.css" type="text/css">
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-12345678-9', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+  </head>
+  <body>
+    <header>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Appacademylogo.png/175px-Appacademylogo.png" alt="">
+      <nav>
+        <ul>
+          <li><a href="#description">Description</a></li>
+          <li><a href="#ingredients">Ingredients</a></li>
+          <li><a href="#directions">Directions</a></li>
+        </ul>
+      </nav>
+    </header>
+    <h2>Meaty Spaghetti Sauce</h2>
+
+    <section>
+      <aside class="">
+        <h2 id="description">Desciption</h2>
+        <p>This is some amazing sauce!</p>
+        <p>1.5 hour total time</p>
+      </aside>
+
+      <figure>
+        <img src="http://images.media-allrecipes.com/userphotos/560x315/667748.jpg" alt="ghaspetti">
+        <figcaption><a href="https://en.wikipedia.org/wiki/Tomato_sauce">Delcisious sauce</a></figcaption>
+      </figure>
+
+      <aside class="">
+        <h2 id ="ingredients">Ingredients</h2>
+        <ul>
+          <li>1 pound ground beef</li>
+          <li>1 onion, chopped</li>
+          <li>4 cloves garlic, minced</li>
+          <li>1 small green bell pepper, diced (optional)</li>
+          <li>28 oz can diced tomatoes</li>
+          <li>16 oz can tomato sauce</li>
+          <li>6 oz can tomato paste</li>
+          <li>2 teaspoons dried oregano</li>
+          <li>2 teaspoons dried basil</li>
+          <li>1 teaspoon salt</li>
+          <li>1/2 teaspoon pepper</li>
+        </ul>
+      </aside>
+
+      <h2 id="directions">Directions</h2>
+      <ol>
+        <li>Combine ground beef, onion, garlic, and green pepper in a large saucepan.
+          Cook and stir until meat is brown and vegetables are tender. Drain grease.</li>
+        <li>Stir diced tomatoes, tomato sauce, and tomato paste into the pan.
+          Season with oregano, basil, salt, and pepper. Simmer spaghetti sauce
+          for 1 hour, stirring occasionally.</li>
+      </ol>
+    </section>
+
+    <section id="reviews">
+      <form id="review-form" action="/reviews" method="post">
+        <label for="name">Name: </label>
+        <input id="name" type="text" name="Name">
+
+        <br>
+        <br>
+
+        <label for="rating">Rating</label>
+        <select id="rating" name="">
+          <option disabled="true" selected="true" value="">-Stars-</option>
+          <option value="5">5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2">2</option>
+          <option value="1">1</option>
+        </select>
+
+        <br>
+        <br>
+
+        <label for="expertise">Cooking Expertise</label>
+        <select id="expertise" name="">
+          <option selected="true" disabled="true">--Select Cooking Expertise--</option>
+          <option value="some">Sometimes Cook</option>
+          <option value="everyday">Cook Everyday</option>
+          <option value="hobby">Cooking is a Hobby</option>
+          <option value="pro">Professional Cook</option>
+        </select>
+
+        <br>
+        <br>
+
+        <label>Reviews
+          <textarea name="review" cols="30" rows="10"></textarea>
+        </label>
+
+        <br>
+        <br>
+
+        <input type="submit" value="Submit Review">
+      </form>
+    </section>
+
+    <footer>
+      <h4>
+        Recipe By:
+        <a href="http://allrecipes.com/recipe/158140/spaghetti-sauce-with-ground-beef/">
+          Hank's Mom via allrecipes.com
+        </a>
+      </h4>
+    </footer>
+  </body>
+</html>
