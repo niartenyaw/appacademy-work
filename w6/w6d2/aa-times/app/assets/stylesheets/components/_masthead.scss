@@ -1,0 +1,109 @@
+.masthead {
+	display: flex;
+	flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+	align-items: center;
+	border-bottom: 2px solid black;
+	position: relative;
+}
+
+.language-nav {
+  padding: 4px 9px;
+  padding-bottom: 0px;
+
+	position: absolute;
+	top: -23px;
+	left: calc(50% - (177.78px/2));
+  background: white;
+
+  border: 1px solid $light-gray;
+	border-bottom: none;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.language-nav ul {
+	display: flex;
+}
+
+.language-nav li:first-child {
+  font-weight: bold;
+}
+
+.language-nav a {
+	margin: 0 5px;
+	text-transform: uppercase;
+	font-family: $sans-serif;
+	font-size: 11px;
+	color: $dark-gray;
+}
+
+.language-nav a:hover {
+  text-decoration: underline;
+}
+
+.logo {
+	max-width: 400px;
+	margin-top: 10px;
+}
+
+.masthead-links {
+	display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+	font-family: $sans-serif;
+	font-size: 11px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.masthead-links li {
+	margin-left: 10px;
+	border-right: 1px solid $light-gray;
+}
+
+.masthead-links li:last-child {
+  border-right: none;
+}
+
+.masthead-links button {
+	background: inherit;
+	padding: 4px 7px;
+	color: #000;
+	font-weight: normal;
+	border: none;
+  margin: -5px 0;
+}
+
+.masthead-links button:hover {
+	background-color: $lightest-gray;
+}
+
+.masthead-links a,
+.masthead-links button,
+.masthead-links time {
+	margin-right: 10px;
+}
+
+.masthead-links li:hover {
+  .underline {
+    text-decoration: underline;
+  }
+}
+
+.masthead-links i {
+	margin-right: 5px;
+}
+
+.masthead-links strong {
+	color: green;
+}
+
+.yellow-icon {
+  color: $yellow;
+}
+.masthead-links p {
+  display: inline;
+}
