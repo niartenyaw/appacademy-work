@@ -1,4 +1,8 @@
 
+const errorCb = () => {
+  console.log("errors!");
+}
+
 export const signup = user => (
   $.ajax({
     method: 'post',

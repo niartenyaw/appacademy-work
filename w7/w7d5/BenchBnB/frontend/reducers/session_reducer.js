@@ -9,7 +9,7 @@ const _nullUser = {
 };
 
 
-const SessionReducer = (state= _nullUser, action) => {
+const SessionReducer = (state = _nullUser, action) => {
   Object.freeze(state);
   let newState = Object.assign({}, state);
   switch (action.type) {

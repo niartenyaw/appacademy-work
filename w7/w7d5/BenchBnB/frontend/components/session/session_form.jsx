@@ -8,44 +8,48 @@ class SessionForm extends React.Component {
                   username: "",
                   password: ""
     };
-    this.inputUpdate = this.inputUpdate.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
-    this.props.processForm(user);
+    this.props.processForm(user)
+      .then(() => this.props.history.push("/"));
+
   }
 
-  inputUpdate(type, e) {
-    this.setState({ [type]: e.target.value });
+  handleChange(type) {
+    return (e) => this.setState({ [type]: e.target.value });
   }
 
   render() {
-    const otherPath = this.props.formType === "/signup" ? "/signin" : "/signup";
-    const text = otherPath === "/signin" ? "Sign In" : "Sign Up";
-    const other = otherPath === "/signin" ? "Sign Up!" : "Sign In!";
+    const path = this.props.formType;
+    const otherPath = path === "/signup" ? "/signin" : "/signup";
+    const text = path === "/signin" ? "Sign In" : "Sign Up";
+    const other = path === "/signin" ? "Sign Up!" : "Sign In!";
     return(
       <div>
         <h1>{ text }</h1>
         <Link to={ otherPath }>
           { other }
         </Link>
-        <form>
+
+        <form onSubmit={(e) => this.handleSubmit(e)}>
           <input type="text"
-            onChange={(e) => this.inputUpdate("username", e)}
+            onChange={this.handleChange("username")}
             value={this.state.username} />
           <input type="password"
-            onChange={(e) => this.inputUpdate("username", e)}
+            onChange={this.handleChange("password")}
             value={this.state.password} />
           <input type="submit" value={ text } />
         </form>
+
+        { this.props.errors.map(er => <p key={er}>{er}</p>) }
+
       </div>
     );
   }
-
-
 }
 
 export default SessionForm;

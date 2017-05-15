@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
 import { signin, signout, signup } from '../../actions/session_actions';
+import { withRouter } from 'react-router';
 import Greeting from './greeting';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, { match }) => {
   return {
-    currentUser: state.session.currentUser
+    currentUser: state.session.currentUser,
+    match: match
   };
 };
-
 
 const mapDispatchToProps = dispatch => ({
   signin: (user) => dispatch(signin(user)),
@@ -15,4 +16,4 @@ const mapDispatchToProps = dispatch => ({
   signup: (user) => dispatch(signup(user))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Greeting);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Greeting));

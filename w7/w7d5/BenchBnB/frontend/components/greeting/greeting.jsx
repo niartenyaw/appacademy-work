@@ -8,12 +8,12 @@ class Greeting extends React.Component {
 
   signout(e) {
     e.preventDefault();
-    this.props.signout();
+    this.props.signout()
+      .then(() => this.props.history.push("/signin"));
   }
 
   render() {
     const user = this.props.currentUser;
-    console.log(user);
     if (user === null) {
       return (
         <div>
