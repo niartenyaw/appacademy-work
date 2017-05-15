@@ -24,6 +24,7 @@ class SessionForm extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     const path = this.props.formType;
     const otherPath = path === "/signup" ? "/signin" : "/signup";
     const text = path === "/signin" ? "Sign In" : "Sign Up";
